@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">brightowl_bespoke_inquiry_listing.brightowl_bespoke_inquiry_data_source</item>
+            <item name="deps" xsi:type="string">brightowl_bespoke_inquiry_listing.brightowl_bespoke_inquiry_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">brightowl_bespoke_inquiry_new_columns</item>
+        <!-- <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Generate MROS</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/generate</item>
+            </item>
+        </item> -->
+    </argument>
+    <dataSource name="brightowl_bespoke_inquiry_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Brightowl\Bespoke\Ui\Component\Listing\DataProviders\Brightowl\Bespoke\Selector\Bespoke</argument>
+            <argument name="name" xsi:type="string">brightowl_bespoke_inquiry_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" path="mui/index/render" xsi:type="url"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">entity_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <paging name="listing_paging"/>
+        <bookmark name="bookmarks">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="namespace" xsi:type="string">brightowl_bespoke_inquiry_new</item>
+                    </item>
+                </item>
+            </argument>
+        </bookmark>
+        <component name="columns_controls">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="columnsData" xsi:type="array">
+                        <item name="provider" xsi:type="string">brightowl_bespoke_inquiry_listing.brightowl_bespoke_inquiry_new.brightowl_bespoke_inquiry_new_columns</item>
+                    </item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/controls/columns</item>
+                    <item name="displayArea" xsi:type="string">dataGridActions</item>
+                </item>
+            </argument>
+        </component>
+        <filters name="listing_filters">
+            <filterSelect name="store_id" provider="${ $.parentName }">
+                <settings>
+                    <captionValue>0</captionValue>
+                    <options class="Brightowl\Bespoke\Ui\Component\Listing\Grid\Column\Options"/>
+                    <label translate="true">Store View</label>
+                    <dataScope>store_id</dataScope>
+                    <imports>
+                        <link name="visible">componentType = column, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+        </filters>
+        <!-- <massaction name="listing_massaction">
+            <action name="delete">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">delete</item>
+                        <item name="label" xsi:type="string" translate="true">Delete</item>
+                        <item name="url" xsi:type="url" path="brightowl_mros/mros/massDelete"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Delete Items</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected items?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+            <action name="reset">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">reset</item>
+                        <item name="label" xsi:type="string" translate="true">Reset</item>
+                        <item name="url" xsi:type="url" path="brightowl_mros/mros/massReset"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Reset Items</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to reset selected items?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+    </massaction> -->
+
+    </listingToolbar>
+    <columns name="brightowl_bespoke_inquiry_new_columns">
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">30</item>
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                    <item name="sortOrder" xsi:type="number">0</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="entity_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="sortOrder" xsi:type="number">1</item>
+                    <item name="label" xsi:type="string" translate="true">ID</item>
+                </item>
+            </argument>
+        </column>
+        <column name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="sortOrder" xsi:type="number">2</item>
+                    <item name="label" xsi:type="string" translate="true">Name</item>
+                </item>
+            </argument>
+        </column> 
+        <column name="email">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="sortOrder" xsi:type="number">3</item>
+                    <item name="label" xsi:type="string" translate="true">Email</item>
+                </item>
+            </argument>
+        </column>
+        <column name="phone">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="sortOrder" xsi:type="number">4</item>
+                    <item name="label" xsi:type="string" translate="true">Phone</item>
+                </item>
+            </argument>
+        </column>
+        <column name="description">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="boolean">false</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="sortOrder" xsi:type="number">5</item>
+                    <item name="label" xsi:type="string" translate="true">Description</item>
+                </item>
+            </argument>
+        </column>
+        <column name="from_date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="sortOrder" xsi:type="number">6</item>
+                    <item name="label" xsi:type="string" translate="true">From date</item>
+                    <item name="dateFormat" xsi:type="string">MMM d, y</item>
+                </item>
+            </argument>
+        </column>
+        <column name="to_date" class="Magento\Ui\Component\Listing\Columns\Date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="sortOrder" xsi:type="number">7</item>
+                    <item name="label" xsi:type="string" translate="true">To date</item>
+                    <item name="dateFormat" xsi:type="string">MMM d, y</item>
+                </item>
+            </argument>
+        </column>
+        <column name="venue">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="boolean">false</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="sortOrder" xsi:type="number">8</item>
+                    <item name="label" xsi:type="string" translate="true">Venue</item>
+                </item>
+            </argument>
+        </column>
+        <column name="event_size">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="boolean">false</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="sortOrder" xsi:type="number">9</item>
+                    <item name="label" xsi:type="string" translate="true">Event size</item>
+                </item>
+            </argument>
+        </column>
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" >
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">dateRange</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                   <item name="dataType" xsi:type="string">date</item>
+                   <item name="label" xsi:type="string" translate="true">Created At</item>
+               </item>
+           </argument>
+       </column>
+        <column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store">
+            <settings>
+                <label translate="true">Store View</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+    </columns>
+</listing>
+
+

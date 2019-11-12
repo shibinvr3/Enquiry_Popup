@@ -1,0 +1,79 @@
+<div id="custom-popup-modal" class="bespoke-inquiry" style="display: none;">
+    <header class="modal-header">
+            <h6 class="modal-title" data-role="title"><span class="success-message" success-message></span></h6>
+            <p class="error-message" error-message></p>
+        </header>
+    <form action="#" id="form-validate" class="bespoke-inquiry-form" method="post" autocomplete="off">
+        <h5 class="modal-title" data-role="title">BESPOKE INQUIRY</h5>
+        <label></label>
+        <input type="hidden" name="form_key" value="<?php echo $block->getFormKey() ?>" />
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" data-validate='{"required":true}'>
+        </div>
+        <div>
+            <label for="email">Contact email:</label>
+            <input type="email" id="email" name="email" data-validate='{"required":true,"email":true}'>
+        </div>
+        <div>
+            <label for="phone">Phone number:</label>
+            <input type="text" id="phone" name="phone" data-validate='{"required":true,"number":true}'>
+        </div>
+        <div>
+            <label for="description">Event Description:</label>
+            <textarea id="description" name="description"></textarea>
+        </div>
+        <div class="field overview" id="date-range">
+            <label for="from_date" class="label">
+                <span>From date</span>
+            </label>
+            <div class="control">
+                <input class="input-text"
+                    type="text"
+                    id="from_date"
+                    name="from_date" data-validate='{"date":true}'/>
+            </div>
+            <label for="to_date" class="label">
+                <span>To date</span>
+            </label>
+            <div class="control">
+                <input class="input-text"
+                    type="text"
+                    id="to_date"
+                    name="to_date" data-validate='{"date":true}'/>
+            </div>
+        </div>
+        <div>
+            <label for="venue">Venue:</label>
+            <input type="text" id="venue" name="venue">
+        </div>
+        <div>
+            <label for="event_size">Party or Event Size:</label>
+            <input type="text" id="event_size" name="event_size">
+        </div>
+        <div>
+            <label for="budget_range">Budget Range:</label>
+            <input type="text" id="budget_range" name="budget_range">
+        </div>
+        <div>
+            <label for="flowers_of_choice">Colour Scheme / Flowers of choice:</label>
+            <input type="text" id="flowers_of_choice" name="flowers_of_choice">
+        </div>
+        <div>
+            <label for="invoicing_information">Invoicing information:</label>
+            <textarea id="invoicing_information" name="invoicing_information"></textarea>
+        </div>
+    </form>
+</div>
+<?php 
+    $ajaxurl = $block->getInquiryUrl();
+?>
+<script type="text/x-magento-init">
+        {
+            "*": {
+                "Brightowl_Bespoke/js/bespoke-inquiry": {
+                    "AjaxUrl": "<?php echo $ajaxurl; ?>"
+                }
+            }
+        }
+</script>
